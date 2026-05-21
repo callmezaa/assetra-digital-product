@@ -5,6 +5,10 @@ import { resend } from '@/lib/resend'
 import { ReceiptEmail } from '@/components/emails/ReceiptEmail'
 import React from 'react'
 
+export async function GET() {
+  return NextResponse.json({ status: 'ok', message: 'Midtrans Webhook endpoint is active' }, { status: 200 })
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json()
