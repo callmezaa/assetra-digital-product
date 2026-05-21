@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assetra
+
+A modern digital asset marketplace built for creators. Buy, sell, and discover premium UI kits, templates, icons, and digital resources.
+
+---
+
+## Tech Stack
+
+- **Framework** — Next.js 16 (App Router)
+- **Database & Auth** — Supabase (PostgreSQL + RLS)
+- **Styling** — Tailwind CSS + shadcn/ui
+- **Payments** — Midtrans
+- **Email** — Resend
+- **Animation** — Framer Motion + GSAP
+
+## Features
+
+- 🛒 Marketplace with server-side filtering & pagination
+- 🔐 Auth with email/password and OAuth (Google, GitHub)
+- 💬 Real-time chat between buyers and creators
+- 💳 Integrated payment gateway (Midtrans)
+- 📦 Secure file downloads via Supabase Signed URLs
+- 📊 Creator wallet with earnings analytics & CSV export
+- 🔔 Real-time notifications
+- 🌙 Dark / Light mode
+- 📈 SEO optimized — dynamic metadata & JSON-LD structured data
+- ⚡ Skeleton loading states for seamless transitions
 
 ## Getting Started
 
-First, run the development server:
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/callmezaa/assetra-digital-product.git
+cd assetra-digital-product
+```
+
+**2. Install dependencies**
+
+```bash
+npm install
+```
+
+**3. Set up environment variables**
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+MIDTRANS_SERVER_KEY=your_midtrans_server_key
+NEXT_PUBLIC_MIDTRANS_CLIENT_KEY=your_midtrans_client_key
+
+RESEND_API_KEY=your_resend_api_key
+```
+
+**4. Run the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the SQL files in your Supabase SQL Editor in this order:
 
-## Learn More
+1. `database.sql` — core schema
+2. `database_indexes.sql` — performance indexes
+3. `secure_download_setup.sql` — storage RLS policies
+4. `storage_setup.sql` — storage bucket configuration
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+├── marketplace/       # Public product listing
+├── product/[id]/      # Product detail page
+├── profile/[username]/# Creator public profile
+├── dashboard/         # Creator dashboard (wallet, chat, products)
+├── auth/              # Login & registration
+└── api/               # API routes (marketplace, download, webhooks)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+components/
+├── ui/                # Base UI components
+└── ...                # Feature components
 
-## Deploy on Vercel
+lib/
+└── supabase/          # Supabase client helpers
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy to [Vercel](https://vercel.com) with one click. Make sure to add all environment variables from `.env.local` to your Vercel project settings.
+
+---
+
+Built with ♥ by [callmezaa](https://github.com/callmezaa)
